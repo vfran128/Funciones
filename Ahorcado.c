@@ -3,6 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 
+
 void gameover(){
   system("clear");
   printf("--------\n");
@@ -50,10 +51,17 @@ int main(void) {
   bool win = false;
   printf("%s\n",correct_word );
   while (misses <= 5) {
+    int wincont = 0;
+    for (int i = 0; i < length; i++) {
+      if (temp_word[i] == correct_word[i]) {
+        wincont ++;
+        if (wincont == length) win = true;
+        else break;
+      }}
+
     if (win == true)break;
     char charc = char_choose();
     getchar();
-    int wincont = 0;
     int cont = 0;
     for (int i = 0; i < length; i++) {
       if (temp_word[i] == correct_word[i]) {

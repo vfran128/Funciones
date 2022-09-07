@@ -3,6 +3,14 @@
 #include <time.h>
 #include <stdbool.h>
 
+void hanged_man(int a){
+  if (a == 0 )printf("fase 0\n");
+  if (a == 1 )printf("fase 1\n");
+  if (a == 2 )printf("fase 2\n");
+  if (a == 3 )printf("fase 3\n");
+  if (a == 4 )printf("fase 4\n");
+  if (a == 5 )printf("fase 5\n");
+}
 
 void gameover(){
   system("clear");
@@ -10,6 +18,7 @@ void gameover(){
   printf("PERDISTE\n");
   printf("--------\n");
 }
+
 void gamewin(){
   system("clear");
   printf("--------\n");
@@ -49,6 +58,7 @@ int main(void) {
   int length = count_char(correct_word);
   char temp_word[length];
   bool win = false;
+  hanged_man(misses);
   printf("%s\n",correct_word );
   while (misses <= 5) {
     int wincont = 0;
@@ -58,27 +68,24 @@ int main(void) {
         if (wincont == length) win = true;
         else break;
       }}
-
     if (win == true)break;
     char charc = char_choose();
     getchar();
-    int cont = 0;
+    bool no_miss = false;
     for (int i = 0; i < length; i++) {
       if (temp_word[i] == correct_word[i]) {
         printf("%c",temp_word[i]);
-        wincont ++;
-        if (wincont == length) win = true;
         }
 
       if (correct_word[i] == charc) {
         temp_word[i] = charc;
         printf("%c",temp_word[i]);
-        cont ++;
+        no_miss = true;
       }
       else if (temp_word[i] != correct_word[i] &&  charc != correct_word[i])  printf("_");
     }
     printf("\n");
-    if(cont == 0){
+    if(no_miss == false){
       misses ++;
       printf("Fallos actuales:%d\n",misses );
     }
